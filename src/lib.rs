@@ -33,12 +33,14 @@ pub fn main_js() -> Result<(), JsValue> {
 #[wasm_bindgen]
 pub fn start_game(canvas: HtmlCanvasElement, name1: String, name2: String) {
     log!("Game Starting");
+
     let graphics = Rc::new(RefCell::new(Graphics::new(canvas.clone())));
-    let manager = Rc::new(RefCell::new(Manager::new(name1, name2)));
+    // let manager = Rc::new(RefCell::new(Manager::new(name1, name2)));
 
     let original_circle_x_y = Rc::new(Cell::new((0.0, 0.0)));
 
     // process mousedown
+    /*
     {
         let graphics = graphics.clone();
         let manager = manager.clone();
@@ -72,7 +74,9 @@ pub fn start_game(canvas: HtmlCanvasElement, name1: String, name2: String) {
             .unwrap();
         closure.forget();
     }
+    */
 
+    /*
     // process mouse move
     {
         let graphics = graphics.clone();
@@ -92,7 +96,9 @@ pub fn start_game(canvas: HtmlCanvasElement, name1: String, name2: String) {
             .unwrap();
         closure.forget();
     }
+    */
 
+    /*
     //process mouse up
     {
         let original_circle_x_y = original_circle_x_y.clone();
@@ -190,6 +196,7 @@ pub fn start_game(canvas: HtmlCanvasElement, name1: String, name2: String) {
             .unwrap();
         closure.forget();
     }
+    */
 }
 
 #[wasm_bindgen]

@@ -23,36 +23,4 @@ impl Interaction {
             ending_rectangle
         }
     }
-
-    pub fn set_pressed(&mut self, state: bool) {
-        &self.pressed.set(state);
-    }
-
-    pub fn is_pressed(&self) -> bool {
-        self.pressed.get()
-    }
-
-    pub fn set_initial_rectangle(&self, index: isize) {
-        self.initial_rectangle.set(index);
-    }
-
-    pub fn get_initial_rectangle(&self) -> isize {
-        self.initial_rectangle.get()
-    }
-
-    pub fn get_chosen_circle(&self) -> isize {
-        self.chosen_circle.get()
-    }
-
-    pub fn set_chosen_circle(&self, value: isize) {
-        self.chosen_circle.set(value)
-    }
-
-    pub fn reset_state(&self) {
-        self.pressed.set(false);
-        self.chosen_circle.set(-1);
-        self.initial_rectangle.set(-1);
-        self.ending_rectangle.set(-1);
-    }
-
 }
