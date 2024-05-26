@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useCallback } from "react";
-import { useEngines } from "../stores/use_engines";
+import { useEngines } from "../hooks/useEngines";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const styles = {
   container: {
@@ -12,6 +13,9 @@ const styles = {
 export function Greet() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { wasmEngine } = useEngines();
+
+  // Canvas Size
+  const { height, width } = useWindowDimensions();
 
   const handleUserKeyPress = useCallback((event) => {
     const { key, keyCode } = event;
@@ -33,11 +37,11 @@ export function Greet() {
       canvas = canvasRef.current;
       wasmEngine.instance.start_game(canvas, "Alex", "Angelica");
     }
-  }, [canvasRef, wasmEngine]);
+  }, [canvasRef, wasmEngine, width, height]);
 
   return (
     <div style={styles.container}>
-      <canvas ref={canvasRef} width="600" height="800"></canvas>
+      <canvas ref={canvasRef} width={`${width}`} height={`${height}`}></canvas>
     </div>
   );
 }

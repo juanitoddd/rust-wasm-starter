@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
-import { Observer } from 'mobx-react'
-import { Greet } from './components/Greet';
-import { useEngines } from './stores/use_engines';
+import React, { useEffect } from "react";
+import { Observer } from "mobx-react";
+import { Greet } from "./components/Greet";
+import { useEngines } from "./hooks/useEngines";
 
 function App() {
-  const { wasmEngine } = useEngines()
+  const { wasmEngine } = useEngines();
 
   useEffect(() => {
     async function loadWasm() {
-      await wasmEngine.initialize()
+      await wasmEngine.initialize();
     }
-    loadWasm()
-  }, [])
+    loadWasm();
+  }, []);
 
   return (
     <Observer>
-      {() => wasmEngine.loading ? <h1>Loading...</h1> : <Greet />}
+      {() => (wasmEngine.loading ? <h1>Loading...</h1> : <Greet />)}
     </Observer>
-  )
-
+  );
 }
 
 export default App;

@@ -1,8 +1,5 @@
 use crate::wasm_bindgen::{JsCast, JsValue};
-
 use std::f64;
-
-
 use web_sys::{HtmlCanvasElement, CanvasRenderingContext2d, Path2d};
 
 use super::shapes::{Rectangle};
@@ -28,7 +25,10 @@ impl Graphics {
         .unwrap();
 
         // let rectangles = Graphics::create_board(&context, &element);
-        let rectangles = Graphics::create_board(&context, &element);        
+        let rectangles = Graphics::create_board(&context, &element); 
+
+        Graphics::render_player(&context);
+
         let interaction = Interaction::new();
         Graphics { 
             interaction,
@@ -42,7 +42,15 @@ impl Graphics {
         let bg: JsValue = JsValue::from_str("#333");
         context.set_fill_style(&bg);
         context.fill_rect(0.0, 0.0, element.width() as f64, element.height() as f64);                                
-        let mut rectangles: Vec<Rectangle> = Vec::with_capacity(16);
+        let mut rectangles: Vec<Rectangle> = Vec::with_capacity(16);        
         rectangles
+    }
+
+    fn render_player(context: &CanvasRenderingContext2d) {        
+        let sea = JsValue::from_str("#999");        
+        let path = Path2d::new().unwrap();
+        path.rect(0.0, 0.0, 100.0, 100.0);
+        context.set_fill_style(&sea);
+        context.fill_with_path_2d(&path);        
     }
 }
