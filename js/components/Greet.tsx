@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useCallback } from "react";
 import { useEngines } from "../hooks/useEngines";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import useMousePosition from "../hooks/useMousePosition";
 
 const styles = {
   container: {
@@ -16,6 +17,14 @@ export function Greet() {
 
   // Canvas Size
   const { height, width } = useWindowDimensions();
+
+  // const mousePosition = useMousePosition();
+
+  // useEffect(() => {
+  //   if (wasmEngine.instance) {
+  //     wasmEngine.instance.mouse_event(mousePosition.x, mousePosition.y);
+  //   }
+  // }, [mousePosition]);
 
   const handleUserKeyPress = useCallback((event) => {
     const { key, keyCode } = event;

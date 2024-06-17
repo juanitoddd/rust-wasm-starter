@@ -27,7 +27,7 @@ impl Graphics {
         // let rectangles = Graphics::create_board(&context, &element);
         let rectangles = Graphics::create_board(&context, &element); 
 
-        Graphics::render_player(&context);
+        Graphics::render_player(&context,0.0, 0.0);
 
         let interaction = Interaction::new();
         Graphics { 
@@ -46,10 +46,10 @@ impl Graphics {
         rectangles
     }
 
-    fn render_player(context: &CanvasRenderingContext2d) {        
+    fn render_player(context: &CanvasRenderingContext2d, x:f64, y: f64) {        
         let sea = JsValue::from_str("#999");        
         let path = Path2d::new().unwrap();
-        path.rect(0.0, 0.0, 100.0, 100.0);
+        path.rect(x, y, 100.0, 100.0);
         context.set_fill_style(&sea);
         context.fill_with_path_2d(&path);        
     }
